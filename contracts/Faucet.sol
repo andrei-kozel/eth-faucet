@@ -16,6 +16,12 @@ contract Faucet {
         }
     }
 
+    function withdraw(uint256 withdrawAmount) external {
+        if (withdrawAmount < 1000000000000000000) {
+            payable(msg.sender).transfer(withdrawAmount);
+        }
+    }
+
     function getFundersAtIndex(uint8 index) external view returns (address) {
         return lutFunders[index];
     }
@@ -29,6 +35,12 @@ contract Faucet {
     }
 }
 
-// const instance = await Faucet.deployed()
-// instance.addFunds({from: accounts[0], value: "2000000000000"})
-// instance.addFunds({from: accounts[1], value: "2000000000000"})
+// just for testing
+//
+// let instance = await Faucet.deployed()
+// instance.addFunds({from: accounts[0], value: "2000000000000000000"})
+// instance.addFunds({from: accounts[1], value: "2000000000000000000"})
+// instance.withdraw("500000000000000000", {from :accounts[1]})
+// instance.getFunderAtIndex(0)
+// instance.getAllFunders()
+// let balance = web3.eth.getBalance(accounts[1]).then(value => web3.utils.fromWei(value))
