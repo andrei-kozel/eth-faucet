@@ -16,7 +16,7 @@ function App() {
       if (window.ethereum) {
         provider = window.ethereum;
         try {
-          await provider.enable();
+          await provider.request({ method: "eth_requestAccounts" });
         } catch {
           console.error("User denied account access!");
         }
