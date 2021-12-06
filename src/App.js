@@ -47,10 +47,12 @@ function App() {
     };
     web3Api.web3 && getAccounts();
   }, [web3Api.web3]);
+  const reload = useCallback(
+    () => setShouldReload(!shouldReload),
+    [shouldReload]
+  );
 
   const addFunds = useCallback(async () => {
-    const reload = () => setShouldReload(!shouldReload);
-
     const { contract, web3 } = web3Api;
     await contract.addFunds({
       from: account,
@@ -58,7 +60,16 @@ function App() {
     });
 
     reload();
-  }, [web3Api, account, shouldReload]);
+  }, [web3Api, account, reload]);
+
+  const withdraw = async () => {
+    const { contract, web3 } = web3Api;
+    const withdrawAmount = web3.utils.toWei("0.1", "ether");
+    await contract.withdraw(withdrawAmount, {
+      from: account,
+    });
+    reload();
+  };
 
   return (
     <>
@@ -90,7 +101,9 @@ function App() {
             <button className="button is-link mr-2" onClick={addFunds}>
               Donate 1 ETH
             </button>
-            <button className="button is-primary">Withdraw</button>
+            <button className="button is-primary" onClick={withdraw}>
+              Withdraw 0.1 ETH
+            </button>
           </div>
         </div>
       </div>
