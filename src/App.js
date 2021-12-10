@@ -105,10 +105,18 @@ function App() {
             Current balance: <strong>{balance}</strong> ETH
           </div>
           <div className="faucet-buttons">
-            <button className="button is-link mr-2" onClick={addFunds}>
+            <button
+              className="button is-link mr-2"
+              onClick={addFunds}
+              disabled={!account}
+            >
               Donate 1 ETH
             </button>
-            <button className="button is-primary" onClick={withdraw}>
+            <button
+              className="button is-primary"
+              onClick={withdraw}
+              disabled={!account}
+            >
               Withdraw 0.1 ETH
             </button>
           </div>
