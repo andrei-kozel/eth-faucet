@@ -35,9 +35,11 @@ function App() {
           isProviderLoaded: true,
         });
       } else {
-        setWeb3Api({
-          ...web3Api,
-          isProviderLoaded: true,
+        setWeb3Api((api) => {
+          return {
+            ...api,
+            isProviderLoaded: true,
+          };
         });
         console.error("Please install metamask");
       }
