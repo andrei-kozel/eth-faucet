@@ -57,13 +57,3 @@ contract Faucet {
         return _funders;
     }
 }
-
-// just for testing
-//
-// let instance = await Faucet.deployed()
-// instance.addFunds({from: accounts[0], value: "2000000000000000000"})
-// instance.addFunds({from: accounts[1], value: "2000000000000000000"})
-// instance.withdraw("50000000000000000", {from :accounts[1]})
-// instance.getFunderAtIndex(0)
-// instance.getAllFunders()
-// let balance = web3.eth.getBalance(accounts[1]).then(value => web3.utils.fromWei(value))
